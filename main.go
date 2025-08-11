@@ -9,11 +9,24 @@ import (
 func main() {
 	r := gin.Default()
 
+	// Set folder views
+	r.LoadHTMLGlob("Views/*")
+
+	// Route Home
 	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "API Cuaca siap digunakan!",
-		})
+		c.HTML(http.StatusOK, "Home.html", nil)
 	})
 
-	r.Run(":8080") // Jalankan server di port 8080
+	// Route Weather
+	r.GET("/weather", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "Weather.html", nil)
+	})
+
+	// Route About
+	r.GET("/about", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "About.html", nil)
+	})
+
+	// Jalankan server di port 8080
+	r.Run(":8080")
 }
