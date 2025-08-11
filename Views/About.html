@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CloudCast - About</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-purple-500 to-pink-500 text-white min-h-screen flex flex-col">
+
+  <!-- Navbar -->
+  <nav class="bg-white/20 backdrop-blur-md shadow-lg p-4 flex justify-between items-center">
+    <h1 class="text-2xl font-bold tracking-wide">🌤 CloudCast</h1>
+    <ul class="flex space-x-6 text-lg">
+      <li><a href="/" class="hover:text-yellow-300">Home</a></li>
+      <li><a href="/weather" class="hover:text-yellow-300">Weather</a></li>
+      <li><a href="/about" class="hover:text-yellow-300">About</a></li>
+    </ul>
+  </nav>
+
+  <!-- About Section -->
+  <main class="flex-1 flex flex-col items-center justify-center px-6 py-12 text-center">
+    <div class="max-w-3xl">
+      <img src="https://cdn-icons-png.flaticon.com/512/1146/1146869.png" alt="Weather Icon" class="w-24 h-24 mx-auto mb-6 drop-shadow-lg">
+      <h2 class="text-4xl font-bold mb-4">Tentang CloudCast</h2>
+      <p class="text-lg mb-6 leading-relaxed">
+        <span class="font-semibold">CloudCast</span> adalah aplikasi web untuk menampilkan informasi cuaca terkini 
+        dan prakiraan cuaca harian di berbagai kota.  
+        Dibangun untuk memberikan informasi cuaca yang mudah diakses, cepat, dan akurat.
+      </p>
+
+      <!-- Tech Stack -->
+      <div class="bg-white/10 rounded-xl p-6 mb-6 shadow-lg">
+        <h3 class="text-xl font-semibold mb-3">Teknologi yang Digunakan</h3>
+        <ul class="space-y-2">
+          <li>🚀 Backend: <span class="font-semibold">Go (Golang)</span></li>
+          <li>🎨 Frontend: <span class="font-semibold">HTML, Tailwind CSS</span></li>
+          <li>🔍 Data Cuaca: <span class="font-semibold">Database Internal + API OpenWeather</span></li>
+        </ul>
+      </div>
+
+      <!-- Purpose -->
+      <div class="bg-white/10 rounded-xl p-6 shadow-lg">
+        <h3 class="text-xl font-semibold mb-3">Tujuan</h3>
+        <p class="leading-relaxed">
+          Memberikan pengalaman terbaik dalam memantau cuaca harian dan mingguan,
+          baik untuk perencanaan perjalanan, aktivitas luar ruangan, maupun keperluan lainnya.
+        </p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-white/10 text-center p-4">
+    © 2025 CloudCast 
+  </footer>
+
+</body>
+</html>
