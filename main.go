@@ -1,31 +1,27 @@
 package main
 
 import (
-	"context"
-	"fmt"
-	"os"
+	// "context"
+	// "fmt"
+	// "os"
 
+	"CloudCast/Config"
+	"fmt"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
-	"github.com/jackc/pgx/v5"
 )
 
 func main() {
-	databaseUrl := "postgres://postgres:alpintod@localhost:5432/weathercast"
-	ctx := context.Background()
 
-	conn, err := pgx.Connect(ctx, databaseUrl)
+	connectDB, err := Config.CloudCastDBConnect()
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Unable to connect to database: %v\n", err)
-		os.Exit(1)
+		fmt.Println("Error connecting to database:", err)
+		return
 	}
-	defer conn.Close(ctx)
-
-	fmt.Println("Successfully connected to PostgreSQL!")
+	fmt.Println("Connected to database:", connectDB.Config().ConnString())
 
 	r := gin.Default()
-	// Set folder views
 	r.LoadHTMLGlob("Views/*")
 
 	// Route Home
