@@ -1,4 +1,4 @@
-module WeatherApp
+module CloudCast
 
 go 1.24.3
 
