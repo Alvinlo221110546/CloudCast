@@ -1,19 +1,15 @@
 package main
 
 import (
-	// "context"
-	// "fmt"
-	// "os"
-
 	"CloudCast/Config"
+	"CloudCast/Routes"
 	"fmt"
-	"net/http"
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
-
+	// Koneksi DB pakai pgx.Conn
 	connectDB, err := Config.CloudCastDBConnect()
 	if err != nil {
 		fmt.Println("Error connecting to database:", err)
@@ -21,24 +17,13 @@ func main() {
 	}
 	fmt.Println("Connected to database:", connectDB.Config().ConnString())
 
+	// Setup router
 	r := gin.Default()
 	r.LoadHTMLGlob("Views/*")
 
-	// Route Home
-	r.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "Home.html", nil)
-	})
+	// Register semua route dengan DB
+	Routes.RegisterRoutes(r, connectDB)
 
-	// Route Weather
-	r.GET("/weather", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "Weather.html", nil)
-	})
-
-	// Route About
-	r.GET("/about", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "About.html", nil)
-	})
-
-	// Jalankan server di port 8080
+	// Jalankan server
 	r.Run(":8080")
 }

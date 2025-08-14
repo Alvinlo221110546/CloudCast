@@ -1,7 +1,9 @@
 package Models
 
 import (
-	"database/sql"
+	"context"
+
+	"github.com/jackc/pgx/v5"
 )
 
 type WeatherToday struct {
@@ -14,16 +16,21 @@ type WeatherToday struct {
 	Date        string
 }
 
-func InsertWeather(db *sql.DB, w WeatherToday) error {
-	_, err := db.Exec(`
-        INSERT INTO weather_today (city, temperature, condition, humidity, wind_speed)
-        VALUES ($1, $2, $3, $4, $5)
-    `, w.City, w.Temperature, w.Condition, w.Humidity, w.WindSpeed)
+func InsertWeather(db *pgx.Conn, w WeatherToday) error {
+	_, err := db.Exec(
+		context.Background(),
+		`INSERT INTO weather_today (city, temperature, condition, humidity, wind_speed)
+		 VALUES ($1, $2, $3, $4, $5)`,
+		w.City, w.Temperature, w.Condition, w.Humidity, w.WindSpeed,
+	)
 	return err
 }
 
-func GetWeather(db *sql.DB) ([]WeatherToday, error) {
-	rows, err := db.Query(`SELECT id, city, temperature, condition, humidity, wind_speed, date FROM weather_today`)
+func GetWeather(db *pgx.Conn) ([]WeatherToday, error) {
+	rows, err := db.Query(
+		context.Background(),
+		`SELECT id, city, temperature, condition, humidity, wind_speed, date FROM weather_today`,
+	)
 	if err != nil {
 		return nil, err
 	}
